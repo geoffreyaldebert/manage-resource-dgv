@@ -1,0 +1,11 @@
+FROM python:3.6-alpine
+
+ENV C_FORCE_ROOT true
+
+COPY . /rq
+WORKDIR /rq
+
+RUN pip install -r requirements.txt
+RUN apk add --update curl
+
+ENTRYPOINT rq worker -c settings
