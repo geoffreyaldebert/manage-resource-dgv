@@ -1,2 +1,4 @@
+__pycache__/
 mongo/
 .env
+csv_detective/

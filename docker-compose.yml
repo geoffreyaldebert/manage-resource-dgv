@@ -1,24 +1,5 @@
 version: "3"
 services:
-  consumer:
-    build:
-      context: rq
-      dockerfile: Dockerfile.consumer
-    depends_on:
-      - redis
-      - mongodb
-    network_mode: host
-    env_file:
-      - .env
-  rqworker:
-    build:
-      context: rq
-      dockerfile: Dockerfile.worker
-    depends_on:
-      - redis
-      - mongodb
-    env_file:
-      - .env
   redis:
     image: redis
     ports:
@@ -29,4 +10,6 @@ services:
     container_name: mongodb
     volumes:
     - ./mongo/:/data/db
+    ports:
+      - "27020:27017"
     restart: unless-stopped
